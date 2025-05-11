@@ -1,9 +1,10 @@
+
 .editor-container.light {
   background-color: white;
   color: black;
 }
 
 .editor-container.dark {
-  background-color: white;
+  background-color: black;
   color: white;
 }

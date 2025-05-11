@@ -1,0 +1,121 @@
+/* index.css or Home.css */
+
+/* General Body Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container for Home Page */
+.home-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px;
+  background-color: black;
+  color: #fff;
+}
+
+/* Left Section with Text */
+.home-content {
+  flex: 1;
+  max-width: 50%;
+  text-align: left;
+}
+
+.home-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #e0e0e0;
+}
+
+.home-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #b0b0b0;
+}
+
+/* Dark Theme Button */
+.home-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #1f1f1f;
+  color: #ffffff;
+  border: 2px solid #3f3f3f;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.home-button:hover {
+  background-color: #2a2a2a;
+  transform: scale(1.05);
+}
+
+.home-button:active {
+  background-color: #333333;
+}
+
+/* Right Section with Image */
+.home-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-image img {
+  max-width: 90%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Optional: Dark Inputs if you have any */
+input, textarea {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Responsive Adjustments (Optional) */
+@media (max-width: 768px) {
+  .home-container {
+    flex-direction: column;
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  .home-content, .home-image {
+    max-width: 100%;
+  }
+
+  .home-content {
+    margin-bottom: 40px;
+  }
+}
+.join-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #1f1f1f;
+  color: #ffffff;
+  border: 2px solid #3f3f3f;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top: 20px;
+}
+
+.join-button:hover {
+  background-color: #2a2a2a;
+  transform: scale(1.05);
+}
+
+.join-button:active {
+  background-color: #333333;
+}

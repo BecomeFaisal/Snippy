@@ -20,8 +20,8 @@ const JoinSession = () => {
         value={sessionId}
         onChange={(e) => setSessionId(e.target.value)}
         placeholder="Enter session ID"
-      />
-      <button onClick={handleJoin}>Join Session</button>
+      />&nbsp;&nbsp;&nbsp;
+      <button className="join-button" onClick={handleJoin}>Join Session</button>
     </div>
   );
 };
