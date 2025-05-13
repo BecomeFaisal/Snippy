@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import './Home.css';
 import JoinSession from './JoinSession';
+import './Home.css';
 
 export default function Home() {
   const navigate = useNavigate();
+
+  console.log('Home component rendered');
 
   const createSession = async () => {
     try {
@@ -21,17 +23,15 @@ export default function Home() {
   return (
     <div className="home-container">
       <div className="home-content">
-        <h1>Welcome to Snippy ✂️</h1>
-        <h2>Your ultimate platform for live code sharing, real-time collaboration, and seamless execution.</h2>
-        <button onClick={createSession} className="home-button">
+        <h1 className="home-title">Welcome to Snippy ✂️</h1>
+        <p className="home-description">Collaborate and code in real-time with your team.</p>
+        <button className="home-button" onClick={createSession}>
           Create New Code Session
         </button>
-        <br />
         <JoinSession />
       </div>
       <div className="home-image">
-        {/* Replace with your image URL or component */}
-        <img src={require('./img.jpg')} alt="Snippy preview" />
+        <img src="/src/pages/img.jpg" alt="Snippy Preview" />
       </div>
     </div>
   );

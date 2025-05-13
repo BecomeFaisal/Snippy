@@ -12,70 +12,53 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: 'http://localhost:3000', // Your React app
+    origin: ['http://localhost:3000', 'http://localhost:5173'], // Allow both React and Vite
     methods: ['GET', 'POST']
   }
 });
 
-
-
 io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
-
   socket.on('join', ({ sessionId }) => {
     socket.join(sessionId); // Join a specific "room" for that session
-    console.log(`User joined session ${sessionId}`);
   });
 
   socket.on('codeChange', async ({ sessionId, code }) => {
-     console.log(`Saving code for session ${sessionId}`);
-    // Send code to others in the same session
     socket.to(sessionId).emit('codeChange', code);
-
-    // Save code to DB
     await CodeSession.updateOne(
-  { sessionId },
-  { code },
-  { upsert: true }
-);
-
+      { sessionId },
+      { code },
+      { upsert: true }
+    );
   });
 
   socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
   });
 });
-
 
 //Rest Apis
 io.on('connection', (socket) => {
-  console.log('User connected:', socket.id);
-
   socket.on('join', ({ sessionId }) => {
     socket.join(sessionId); // Join a specific "room" for that session
-    console.log(`User joined session ${sessionId}`);
   });
 
   socket.on('codeChange', async ({ sessionId, code }) => {
-    // Send code to others in the same session
     socket.to(sessionId).emit('codeChange', code);
-
-    // Save code to DB
-    await CodeSession.updateOne({ sessionId }, { code });
+    await CodeSession.updateOne(
+      { sessionId },
+      { code },
+      { upsert: true }
+    );
   });
 
   socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
   });
 });
-
 
 mongoose.connect('mongodb://localhost:27017/snippy').then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
 const PORT = 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
 
 // Create a new session
 app.post('/api/create', async (req, res) => {

@@ -1,121 +1,86 @@
-/* index.css or Home.css */
-
-/* General Body Styles */
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #121212;
-  color: #ffffff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Container for Home Page */
 .home-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 100px;
-  background-color: black;
-  color: #fff;
+  justify-content: space-between;
+  height: 100vh;
+  background-color: #000000; /* Dark black theme */
+  color: #ffffff;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
 
-/* Left Section with Text */
 .home-content {
-  flex: 1;
   max-width: 50%;
-  text-align: left;
+  padding-left: 50px;
 }
 
-.home-content h1 {
+.home-title {
   font-size: 3rem;
   margin-bottom: 20px;
-  color: #e0e0e0;
 }
 
-.home-content h2 {
-  font-size: 1.5rem;
+.home-description {
+  font-size: 1.2rem;
   margin-bottom: 30px;
-  color: #b0b0b0;
+  line-height: 1.5;
 }
 
-/* Dark Theme Button */
 .home-button {
-  padding: 12px 24px;
-  font-size: 16px;
-  background-color: #1f1f1f;
-  color: #ffffff;
-  border: 2px solid #3f3f3f;
-  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.3s;
 }
 
 .home-button:hover {
-  background-color: #2a2a2a;
-  transform: scale(1.05);
+  background-color: #0056b3;
 }
 
-.home-button:active {
-  background-color: #333333;
-}
-
-/* Right Section with Image */
 .home-image {
-  flex: 1;
+  max-width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-right: 50px;
 }
 
 .home-image img {
-  max-width: 90%;
+  max-width: 100%;
   height: auto;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 
-/* Optional: Dark Inputs if you have any */
-input, textarea {
-  background-color: #1e1e1e;
-  color: #ffffff;
-  border: 1px solid #444;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-/* Responsive Adjustments (Optional) */
-@media (max-width: 768px) {
-  .home-container {
-    flex-direction: column;
-    text-align: center;
-    padding: 50px 20px;
-  }
-
-  .home-content, .home-image {
-    max-width: 100%;
-  }
-
-  .home-content {
-    margin-bottom: 40px;
-  }
-}
-.join-button {
-  padding: 12px 24px;
-  font-size: 16px;
-  background-color: #1f1f1f;
-  color: #ffffff;
-  border: 2px solid #3f3f3f;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+.join-session-container {
   margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.join-button:hover {
-  background-color: #2a2a2a;
-  transform: scale(1.05);
+.join-session-input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
 }
 
-.join-button:active {
-  background-color: #333333;
+.join-session-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.join-session-button:hover {
+  background-color: #218838;
 }

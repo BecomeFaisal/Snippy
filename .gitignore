@@ -23,7 +23,14 @@ build/
 .vscode/
 .idea/
 *.swp
+*.iml
 
 # Miscellaneous
 .DS_Store
 Thumbs.db
+
+# Additions for Vite
+.vite
+
+# Temporary files
+*.tmp

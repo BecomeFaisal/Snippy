@@ -14,14 +14,17 @@ const JoinSession = () => {
   };
 
   return (
-    <div>
+    <div className="join-session-container">
       <input
+        className="join-session-input"
         type="text"
         value={sessionId}
         onChange={(e) => setSessionId(e.target.value)}
         placeholder="Enter session ID"
-      />&nbsp;&nbsp;&nbsp;
-      <button className="join-button" onClick={handleJoin}>Join Session</button>
+      />
+      <button className="join-session-button" onClick={handleJoin}>
+        Join Session
+      </button>
     </div>
   );
 };

@@ -13,24 +13,26 @@ export default function CodeEditor() {
   const { sessionId } = useParams();
   const [code, setCode] = useState('//Start Coding...');
 
- useEffect(() => {
-  socket.emit('join', { sessionId });
+  useEffect(() => {
+    socket.emit('join', { sessionId });
 
-  // Fetch code from server on first load
-  fetch(`http://localhost:5000/api/session/${sessionId}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.code !== undefined) {
-        setCode(data.code);
-      }
+    fetch(`http://localhost:5000/api/session/${sessionId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.code !== undefined) {
+          setCode(data.code);
+        }
+      });
+
+    socket.on('codeChange', (newCode) => {
+      setCode(newCode);
     });
 
-  socket.on('codeChange', (newCode) => {
-    setCode(newCode);
-  });
-
-  return () => socket.disconnect();
-}, [sessionId]);
+    return () => {
+      socket.off('codeChange');
+      socket.disconnect();
+    };
+  }, [sessionId]);
 
   const handleChange = (value) => {
     setCode(value);

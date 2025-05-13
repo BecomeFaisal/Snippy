@@ -1,9 +1,9 @@
-import {toast} from 'react-toastify';
+import React from 'react';
 
 const CopySessionLink = ({ sessionId }) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(window.location.href);
-    toast.success('Session link copied to clipboard!');
+    alert('Session link copied!');
   };
 
   return <button onClick={copyToClipboard}>Copy Session Link</button>;
