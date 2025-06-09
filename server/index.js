@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const CodeSession = require('./models/CodeSession');
 const { Server } = require('socket.io');
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
@@ -54,7 +55,7 @@ io.on('connection', (socket) => {
   });
 });
 
-mongoose.connect('mongodb+srv://becomefaisal:pcozDTW779uCBKmo@cluster0.hnxlz.mongodb.net/Snippy?retryWrites=true&w=majority&appName=Cluster0/Snippy').then(() => console.log('MongoDB connected'))
+mongoose.connect(process.env.MONGO_URL).then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
 const PORT = 5000;
