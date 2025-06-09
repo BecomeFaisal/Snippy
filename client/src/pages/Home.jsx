@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { io } from "socket.io-client";
 import JoinSession from './JoinSession';
 import './Home.css';
-const API_URL = import.meta.env.API_URL;
-const socket = io(API_URL);
+const API_URL = import.meta.env.VITE_API_URL;
+const socket = io(API_URL, { transports: ['websocket'] }); // Always use the full URL
 import img from './img.jpg';
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
 
   const createSession = async () => {
     try {
-      const res = await fetch(`${API_URL}/api/create`, {
+      const res = await fetch(`${VITE_API_URL}/api/create`, {
         method: 'POST'
       });
       const data = await res.json();
