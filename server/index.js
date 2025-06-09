@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
   });
 });
 
-mongoose.connect('mongodb://localhost:27017/snippy').then(() => console.log('MongoDB connected'))
+mongoose.connect('mongodb+srv://becomefaisal:pcozDTW779uCBKmo@cluster0.hnxlz.mongodb.net/Snippy?retryWrites=true&w=majority&appName=Cluster0/Snippy').then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
 const PORT = 5000;
