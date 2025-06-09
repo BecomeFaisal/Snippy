@@ -6,8 +6,9 @@ import { javascript } from '@codemirror/lang-javascript';
 import { oneDark } from '@codemirror/theme-one-dark';
 import './CodeEditor.css';
 import CopySessionLink from './CopySessionLink';
+const API_URL = import.meta.env.VITE_API_URL;
+const socket = io(API_URL);
 
-const socket = io('http://localhost:5000');
 
 export default function CodeEditor() {
   const { sessionId } = useParams();
@@ -16,7 +17,7 @@ export default function CodeEditor() {
   useEffect(() => {
     socket.emit('join', { sessionId });
 
-    fetch(`http://localhost:5000/api/session/${sessionId}`)
+    fetch(`${API_URL}/api/session/${sessionId}`)
       .then(res => res.json())
       .then(data => {
         if (data.code !== undefined) {

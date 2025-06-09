@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import JoinSession from './JoinSession';
 import './Home.css';
+const API_URL = import.meta.env.VITE_API_URL;
+const socket = io(API_URL);
+import img from './img.jpg';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -9,7 +12,7 @@ export default function Home() {
 
   const createSession = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/create', {
+      const res = await fetch(`${API_URL}/api/create`, {
         method: 'POST'
       });
       const data = await res.json();
@@ -31,7 +34,7 @@ export default function Home() {
         <JoinSession />
       </div>
       <div className="home-image">
-        <img src="/src/pages/img.jpg" alt="Snippy Preview" />
+        <img src={img} alt="Snippy Preview" />
       </div>
     </div>
   );
