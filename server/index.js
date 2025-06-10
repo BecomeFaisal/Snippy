@@ -73,10 +73,7 @@ io.on('connection', (socket) => {
 mongoose.connect(process.env.MONGO_URL).then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
 
-const PORT = 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// Create a new session
+// API routes
 app.post('/api/create', async (req, res) => {
   const sessionId = Math.random().toString(36).substring(2, 8); // generates random 6-char ID
   const session = new CodeSession({ sessionId });
@@ -84,9 +81,25 @@ app.post('/api/create', async (req, res) => {
   res.json({ sessionId });
 });
 
-// Get existing session by ID
 app.get('/api/session/:id', async (req, res) => {
   const session = await CodeSession.findOne({ sessionId: req.params.id });
   if (!session) return res.status(404).send('Session not found');
   res.json({ code: session.code });
 });
+
+// Serve static files from Vite build
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Catch-all: serve index.html for all non-API routes (for React Router)
+app.get('*', (req, res) => {
+  // Only handle non-API routes
+  if (!req.path.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  } else {
+    res.status(404).send('Not found');
+  }
+});
+
+const PORT = 5000;
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
