@@ -7,14 +7,29 @@ const { Server } = require('socket.io');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'https://snippy-git-main-becomefaisals-projects.vercel.app',
+    'https://snippy-five.vercel.app'
+  ],
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(express.json());
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:3000', 'http://localhost:5173'], // Allow both React and Vite
-    methods: ['GET', 'POST']
+    origin: [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://snippy-git-main-becomefaisals-projects.vercel.app',
+      'https://snippy-five.vercel.app'
+    ],
+    methods: ['GET', 'POST'],
+    credentials: true
   }
 });
 
