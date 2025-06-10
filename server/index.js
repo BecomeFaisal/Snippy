@@ -92,13 +92,8 @@ const path = require('path');
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // Catch-all: serve index.html for all non-API routes (for React Router)
-app.get('*', (req, res) => {
-  // Only handle non-API routes
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  } else {
-    res.status(404).send('Not found');
-  }
+app.get(/^\/(?!api).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
 const PORT = 5000;
