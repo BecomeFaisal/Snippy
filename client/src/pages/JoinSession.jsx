@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const JoinSession = () => {
   const [sessionId, setSessionId] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleJoin = () => {
-    if (sessionId) {
+  const handleJoin = async () => {
+    setError('');
+    if (!sessionId) {
+      setError('Please enter a session ID');
+      return;
+    }
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_URL}/api/session/${sessionId}`);
+      if (!res.ok) throw new Error('Session not found');
       navigate(`/code/${sessionId}`);
-    } else {
-      alert('Please enter a session ID');
+    } catch (err) {
+      setError('Unable to join session. Please check the session ID.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -21,10 +35,12 @@ const JoinSession = () => {
         value={sessionId}
         onChange={(e) => setSessionId(e.target.value)}
         placeholder="Enter session ID"
+        disabled={loading}
       />
-      <button className="join-session-button" onClick={handleJoin}>
-        Join Session
+      <button className="join-session-button" onClick={handleJoin} disabled={loading}>
+        {loading ? 'Joining...' : 'Join Session'}
       </button>
+      {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
     </div>
   );
 };

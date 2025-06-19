@@ -87,14 +87,7 @@ app.get('/api/session/:id', async (req, res) => {
   res.json({ code: session.code });
 });
 
-// Serve static files from Vite build
-const path = require('path');
-app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// Catch-all: serve index.html for all non-API routes (for React Router)
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
 
 const PORT = 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));s

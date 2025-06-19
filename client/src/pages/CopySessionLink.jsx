@@ -2,7 +2,8 @@ import React from 'react';
 
 const CopySessionLink = ({ sessionId }) => {
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(window.location.href);
+    const url = `${window.location.origin}/code/${sessionId}`;
+    navigator.clipboard.writeText(url);
     alert('Session link copied!');
   };
 
