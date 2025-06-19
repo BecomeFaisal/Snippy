@@ -8,12 +8,18 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'https://snippy-git-main-becomefaisals-projects.vercel.app',
-    'https://snippy-five.vercel.app'
-  ],
+  origin: (origin, callback) => {
+    // Allow localhost and any vercel.app subdomain
+    const allowed = [
+      /^http:\/\/localhost:\d+$/,
+      /^https?:\/\/([\w-]+\.)*vercel\.app$/
+    ];
+    if (!origin || allowed.some(r => r.test(origin))) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST'],
   credentials: true
 }));
@@ -90,4 +96,4 @@ app.get('/api/session/:id', async (req, res) => {
 
 
 const PORT = 5000;
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));s
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
